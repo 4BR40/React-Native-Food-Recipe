@@ -13,7 +13,6 @@ import Colors from '../constants/Colors';
 import { CATEGORIES } from '../data/dummy-data';
 
 const CategoriesScreen = (props) => {
-  console.log(props)
   const renderGridItem = (itemData) => {
     return (
       <TouchableOpacity

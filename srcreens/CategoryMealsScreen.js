@@ -37,6 +37,7 @@ const CategoryMealScreen = (props) => {
     </View>
   );
 };
+console.log(CategoryMealScreen)
 
 const styles = StyleSheet.create({
   screen: {

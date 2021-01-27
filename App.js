@@ -3,12 +3,10 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import CategoriesScreen from './srcreens/CategoriesScreen';
+import { enableScreens } from 'react-native-screens';
 
 import MealsNavigator from './navigation/MealsNavigator';
+enableScreens();
 
 const fetchFonts = () => {
   Font.loadAsync({
@@ -29,12 +27,5 @@ export default function App() {
     );
   }
 
-  const Stack = createStackNavigator();
-
-
-  return (
-    <NavigationContainer>
-      <MealsNavigator />
-    </NavigationContainer>
-  );
+  return <MealsNavigator />;
 }
