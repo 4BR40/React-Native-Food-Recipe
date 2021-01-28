@@ -1,10 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { MEALS } from '../data/dummy-data';
 
 const MealDetailScreen = (props) => {
+  const mealId = props.route.params.mealId;
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      title: selectedMeal.title,
+    });
+  });
+
   return (
     <View style={styles.screen}>
-      <Text>Meal detail Screen</Text>
+      <Text>{selectedMeal.title}</Text>
+      <Text>{selectedMeal.complexity}</Text>
+      <Text>{selectedMeal.duration}</Text>
+      <Text>{selectedMeal.isGlutenFree}</Text>
+      <Text>{selectedMeal.isLactoseFree}</Text>
+      <Text>{selectedMeal.isVegetarian}</Text>
+      <Text>{selectedMeal.isVegan}</Text>
+
     </View>
   );
 };
