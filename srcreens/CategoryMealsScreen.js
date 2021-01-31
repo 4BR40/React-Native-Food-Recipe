@@ -41,7 +41,7 @@ const CategoryMealScreen = (props) => {
         data={displayedMeals}
         keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
-        style={{ width: '95%' }}
+        style={{ width: '100%', }}
       />
     </View>
   );
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 15,
   },
 });
 
