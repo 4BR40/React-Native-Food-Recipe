@@ -1,11 +1,9 @@
 import React from 'react';
 import { Platform } from 'react-native';
 
-// import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
 
 import CategoriesScreen from '../srcreens/CategoriesScreen';
 import CategoryMealsScreen from '../srcreens/CategoryMealsScreen';
