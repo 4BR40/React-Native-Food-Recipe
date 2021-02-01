@@ -134,11 +134,33 @@ const MainTabNavigator = () => {
   );
 };
 
+const drawerOptions = {
+  activeTintColor: Colors.accentColor,
+  labelStyle: {
+    fontFamily: 'open-sans-bold',
+  },
+};
+const drawerHomeOptions = {
+  drawerLabel: 'Meals',
+};
+
+const drawerFilterOptions = {
+  drawerLabel: 'Filters',
+};
+
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={MainTabNavigator} />
-      <Drawer.Screen name="Filter" component={FilterStackNavigator} />
+    <Drawer.Navigator drawerContentOptions={drawerOptions}>
+      <Drawer.Screen
+        name="Home"
+        component={MainTabNavigator}
+        options={drawerHomeOptions}
+      />
+      <Drawer.Screen
+        name="Filter"
+        component={FilterStackNavigator}
+        options={drawerFilterOptions}
+      />
     </Drawer.Navigator>
   );
 };
