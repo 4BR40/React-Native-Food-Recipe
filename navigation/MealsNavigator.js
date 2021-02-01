@@ -4,18 +4,21 @@ import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CategoriesScreen from '../srcreens/CategoriesScreen';
 import CategoryMealsScreen from '../srcreens/CategoryMealsScreen';
 import MealDetailScreen from '../srcreens/MealDetailScreen';
 import FavoritesScreen from '../srcreens/FavoritesScreen';
+import FiltersScreen from '../srcreens/FiltersScreen';
 import Colors from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-const mealsStackNavigator = () => {
+const MealsStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Categories"
@@ -47,7 +50,7 @@ const mealsStackNavigator = () => {
   );
 };
 
-const favStackNavigator = () => {
+const FavStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Categories"
@@ -79,6 +82,28 @@ const favStackNavigator = () => {
   );
 };
 
+const FilterStackNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Filters"
+      screenOptions={{
+        gestureEnabled: false,
+        headerStyle: {
+          backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
+        },
+        headerTintColor:
+          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+      }}
+    >
+      <Stack.Screen
+        name="Filters"
+        component={FiltersScreen}
+        options={{ title: 'Filter Meals' }}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const tabNavigatorOptions = {
   activeTintColor: Colors.accentColor,
 };
@@ -92,22 +117,36 @@ const tabFavNavigatorOptions = {
     return <Ionicons name="ios-star" size={25} color={tabInfo.color} />;
   },
 };
+const MainTabNavigator = () => {
+  return (
+    <Tab.Navigator tabBarOptions={tabNavigatorOptions}>
+      <Tab.Screen
+        name="Meals"
+        component={MealsStackNavigator}
+        options={tabMealNavigatorOptions}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavStackNavigator}
+        options={tabFavNavigatorOptions}
+      />
+    </Tab.Navigator>
+  );
+};
+
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={MainTabNavigator} />
+      <Drawer.Screen name="Filter" component={FilterStackNavigator} />
+    </Drawer.Navigator>
+  );
+};
 
 const MealsNavigator = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator tabBarOptions={tabNavigatorOptions}>
-        <Tab.Screen
-          name="Meals"
-          component={mealsStackNavigator}
-          options={tabMealNavigatorOptions}
-        />
-        <Tab.Screen
-          name="Favorites"
-          component={favStackNavigator}
-          options={tabFavNavigatorOptions}
-        />
-      </Tab.Navigator>
+      <DrawerNavigator />
     </NavigationContainer>
   );
 };
