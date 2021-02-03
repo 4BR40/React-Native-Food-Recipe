@@ -4,14 +4,14 @@ import {
   View,
   Image,
   Text,
-  Button,
   StyleSheet
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
-import { MEALS } from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
+import { startDetecting } from 'react-native/Libraries/Utilities/PixelRatio';
 
 const ListItem = props => {
   return (
@@ -23,7 +23,9 @@ const ListItem = props => {
 
 const MealDetailScreen = (props) => {
   const mealId = props.route.params.mealId;
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  const availableMeals = useSelector(state => state.meals.meals);  
+  const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
