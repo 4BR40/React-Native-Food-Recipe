@@ -38,13 +38,12 @@ const FiltersScreen = (props) => {
       vegan: isVegan,
       isVegetarian: isVegetarian,
     };
-
     dispatch(setFilters(appliedFilters));
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
   useEffect(() => {
     // console.log(navigation.params);
-    navigation.setParams({ save: saveFilters });
+    props.navigation.setParams({ save: saveFilters });
     // console.log(navigation.params);
   }, [saveFilters]);
 
@@ -67,10 +66,7 @@ const FiltersScreen = (props) => {
             title="Save"
             iconName="ios-save"
             onPress={() => {
-              // setParams('save');
-              // navigation.params.save();
-              saveFilters();
-              // console.log(navigation.params);
+              props.route.params.save();
             }}
           />
         </HeaderButtons>
